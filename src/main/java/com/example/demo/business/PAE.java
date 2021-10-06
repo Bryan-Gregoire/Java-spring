@@ -8,7 +8,7 @@ import com.example.demo.model.Course;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@Bean
+/*@Bean*/
 public class PAE {
 
     public ArrayList<Course> getCourses() {

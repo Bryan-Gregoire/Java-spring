@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet"> -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <title>Accueil</title>
+</head>
+
+<header>
+    <h1>Programme annuel des étudiants</h1>
+    <h3>HE2B-ESI / WEBG5 / MCD / 2021-2022</h3>
+
+    <p>Bievenue sur le site de gestion du programme annuel des étudiants.</p>
+
+    <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/courses">Cours</a></li>
+    </ul>
+</header>
+
+<body>
+    <table>
+        <tr>
+            <th>Sigle</th> <th>Titre</th> <th>ECTS</th>
+        </tr>
+        <tr th:each="course : ${courses}">
+            <td th:text="${course.id}">cours</td>
+            <td th:text="${course.libelle}">libelle</td>
+            <td th:text="${course.ects}">ects</td>
+            </tr>
+    </table>
+
+</body>
+<footer></footer>
+
+</html>
