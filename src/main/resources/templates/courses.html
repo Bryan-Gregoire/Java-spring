@@ -24,7 +24,7 @@
 </header>
 
 <body>
-    <table>
+    <table th:unless="${#lists.isEmpty(courses)}">
         <tr>
             <th>Sigle</th> <th>Titre</th> <th>ECTS</th>
         </tr>
@@ -34,6 +34,7 @@
             <td th:text="${course.ects}">ects</td>
             </tr>
     </table>
+    <p th:if="${#lists.isEmpty(courses)}"> Il n'y a aucun cours actuellement</p>
 
 </body>
 <footer></footer>

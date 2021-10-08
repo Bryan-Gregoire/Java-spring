@@ -8,7 +8,7 @@
 		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>53735.webg5</groupId>
+	<groupId>g53735.webg5</groupId>
 	<artifactId>pae</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pae</name>
