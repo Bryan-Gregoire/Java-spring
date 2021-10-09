@@ -53,6 +53,13 @@ body {
     width: 100%;
 }
 
+input[type=text] {
+    padding: 5px 10px;
+    margin: 4px 0;
+    border: 2px solid rgb(207, 75, 75);
+    border-radius: 4px;
+}
+
 th, td {
     border: 1px solid black;
     text-align: center;
@@ -67,10 +74,13 @@ th {
     font-family: cursive;
 }
 
-td {
-    background-color: cornflowerblue;
+td, td a, label {
     color: darkblue;
     font-weight: bold;
+}
+
+td, td a {
+    background-color: cornflowerblue;
 }
 
 tr:hover {
