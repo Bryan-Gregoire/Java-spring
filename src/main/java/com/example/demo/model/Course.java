@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 

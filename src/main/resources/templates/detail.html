@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <title>Accueil</title>
+    <title>Détail</title>
 </head>
 
 <header>
@@ -15,7 +15,6 @@
     <h3>HE2B-ESI / WEBG5 / MCD / 2021-2022</h3>
 
     <p>Bievenue sur le site de gestion du programme annuel des étudiants.</p>
-
     <ul>
         <li><a href="/">Accueil</a></li>
         <li><a href="/courses">Cours</a></li>
@@ -23,20 +22,7 @@
 </header>
 
 <body>
-    <table th:unless="${#lists.isEmpty(courses)}">
-        <tr>
-            <th>Sigle</th>
-            <th>Titre</th>
-            <th>ECTS</th>
-        </tr>
-        <tr th:each="course : ${courses}">
-            <td><a th:text="${course.id}" th:href="@{/courses/detail/(coursId=${course.id})}">cours</a></td>
-            <td><a th:text="${course.libelle}" th:href="@{/courses/detail/(coursId=${course.id})}">libelle</a></td>
-            <td th:text="${course.ects}">ects</td>
-        </tr>
-    </table>
-    <p th:if="${#lists.isEmpty(courses)}"> Il n'y a aucun cours actuellement</p>
-
+    <h1>Voici les détail du cours de <span th:text=${cours}>inconnu</span> </h1>
 </body>
 <footer></footer>
 
