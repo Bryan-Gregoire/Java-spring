@@ -1,5 +1,6 @@
 package com.example.demo.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,11 @@ import com.example.demo.model.Course;
 @Slf4j
 public class CourseCtrl {
 
+    @Autowired
+    PAE pae;
+
     @GetMapping("/courses")
     public String courses(Model model) {
-        PAE pae = new PAE(); // Possible de faire sans "new" grace a @service de la classe ?
         model.addAttribute("courses", pae.getCourses());
         model.addAttribute("course", new Course(null, null, 0));
         return "courses";
@@ -33,8 +36,6 @@ public class CourseCtrl {
     public String addCourse(Course cours, Model model) {
         log.info("Cours ajouter : id : " + cours.getId() + ", libelle : " + cours.getLibelle() + ", ects : "
                 + cours.getEcts());
-
-        PAE pae = new PAE(); // Possible de faire sans "new" grace a @service de la classe ?
         model.addAttribute("courses", pae.getCourses());
         return "courses";
     }

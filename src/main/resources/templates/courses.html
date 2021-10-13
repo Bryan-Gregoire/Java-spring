@@ -1,57 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <title>Accueil</title>
+    <title>Cours</title>
 </head>
 
-<header>
-    <h1>Programme annuel des étudiants <img th:src="@{/image/EsiLogo.jpg}" alt="HE2B"></h1>
-    <h3>HE2B-ESI / WEBG5 / MCD / 2021-2022</h3>
-
-    <p>Bievenue sur le site de gestion du programme annuel des étudiants.</p>
-
-    <ul>
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/courses">Cours</a></li>
-    </ul>
-</header>
-
 <body>
+    <main layout:fragment="content">
+        <form th:action="@{/courses}" th:object="${course}" method="post">
+            <label for="sigle">Sigle</label>
+            <input type="text" name="sigle" th:field="*{id}" placeholder="Entrez le sigle du cours ...">
 
-    <form th:action="@{/courses}" th:object="${course}" method="post">
-        <label for="sigle">Sigle</label>
-        <input type="text" name="sigle" th:field="*{id}" placeholder="Entrez le sigle du cours ...">
+            <label for="lib">Libelle</label>
+            <input type="text" name="lib" th:field="*{libelle}" placeholder="Entrez le titre du cours ...">
 
-        <label for="lib">Libelle</label>
-        <input type="text" name="lib" th:field="*{libelle}" placeholder="Entrez le titre du cours ...">
+            <label for="ects">ECTS</label>
+            <input type="text" name="ects" th:field="*{ects}" placeholder="Nombre d'ects du cours ...">
 
-        <label for="ects">ECTS</label>
-        <input type="text" name="ects" th:field="*{ects}" placeholder="Nombre d'ects du cours ...">
-
-        <button>Ajouter</button>
-    </form>
+            <button>Ajouter</button>
+        </form>
 
 
-    <table th:unless="${#lists.isEmpty(courses)}">
-        <tr>
-            <th>Sigle</th>
-            <th>Titre</th>
-            <th>ECTS</th>
-        </tr>
-        <tr th:each="course : ${courses}">
-            <td><a th:text="${course.id}" th:href="@{/courses/detail/(coursId=${course.id})}">cours</a></td>
-            <td><a th:text="${course.libelle}" th:href="@{/courses/detail/(coursId=${course.id})}">libelle</a></td>
-            <td th:text="${course.ects}">ects</td>
-        </tr>
-    </table>
-    <p th:if="${#lists.isEmpty(courses)}"> Il n'y a aucun cours actuellement</p>
-
+        <table th:unless="${#lists.isEmpty(courses)}">
+            <tr>
+                <th>Sigle</th>
+                <th>Titre</th>
+                <th>ECTS</th>
+            </tr>
+            <tr th:each="course : ${courses}">
+                <td><a th:text="${course.id}" th:href="@{/courses/detail/(coursId=${course.id})}">cours</a></td>
+                <td><a th:text="${course.libelle}" th:href="@{/courses/detail/(coursId=${course.id})}">libelle</a></td>
+                <td th:text="${course.ects}">ects</td>
+            </tr>
+        </table>
+        <p th:if="${#lists.isEmpty(courses)}"> Il n'y a aucun cours actuellement</p>
+    </main>
 </body>
 <footer></footer>
 
