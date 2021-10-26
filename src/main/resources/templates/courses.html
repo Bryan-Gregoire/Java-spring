@@ -8,19 +8,33 @@
 
 <body>
     <main layout:fragment="content">
-        <form th:action="@{/courses}" th:object="${course}" method="post">
-            <label for="sigle">Sigle</label>
-            <input type="text" name="sigle" th:field="*{id}" placeholder="Entrez le sigle du cours ...">
+        <form id="formCourse" th:action="@{/courses}" th:object="${course}" method="post">
+            <div id="contentForm">
+                
+            <div>
+                <label for="sigle">Sigle</label>
+                <input type="text" name="sigle" th:field="*{id}" placeholder="Entrez le sigle du cours ..."
+                    th:errorclass="errorField">
+                <span th:errors="*{id}" class="errorMsg">erreur</span>
+            </div>
 
-            <label for="lib">Libelle</label>
-            <input type="text" name="lib" th:field="*{libelle}" placeholder="Entrez le titre du cours ...">
-
-            <label for="ects">ECTS</label>
-            <input type="text" name="ects" th:field="*{ects}" placeholder="Nombre d'ects du cours ...">
-
+            <div>
+                <label for="lib">Libelle</label>
+                <input type="text" name="lib" th:field="*{libelle}" placeholder="Entrez le titre du cours ..."
+                    th:errorclass="errorField">
+                <span th:errors="*{libelle}" class="errorMsg">erreur</span>
+            </div>
+            
+            <div>
+                <label for="ects">ECTS</label>
+                <input type="text" name="ects" th:field="*{ects}" placeholder="Nombre d'ects du cours ..."
+                    th:errorclass="errorField">
+                <span th:errors="*{ects}" class="errorMsg">erreur</span>
+            </div>
             <button>Ajouter</button>
+            
+        </div>
         </form>
-
 
         <table th:unless="${#lists.isEmpty(courses)}">
             <tr>

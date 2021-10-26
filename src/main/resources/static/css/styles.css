@@ -91,3 +91,16 @@ table {
     text-align: center;
     width: 100%;
 }
+
+#contentForm {
+    text-align: left;
+    margin-left: 35%;
+}
+
+.errorField {
+    color: red;
+}
+
+.errorMsg {
+    color: red;
+}
