@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -30,4 +31,9 @@ public class restCtrl {
         return coursesStr;
     }
 
+    /**
+     * @GetMapping("/courses/student") public String getStudentCoursesJSON() {
+     * RestTemplate restTemplate = new RestTemplate(); //Course info =
+     * restTemplate.getForObject("http://localhost:8080/api/hello", Course.class); }
+     */
 }
