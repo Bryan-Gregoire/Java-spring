@@ -31,9 +31,12 @@ public class restCtrl {
         return coursesStr;
     }
 
-    /**
-     * @GetMapping("/courses/student") public String getStudentCoursesJSON() {
-     * RestTemplate restTemplate = new RestTemplate(); //Course info =
-     * restTemplate.getForObject("http://localhost:8080/api/hello", Course.class); }
-     */
+    @GetMapping("/courses/student")
+    public void getStudentCoursesJSON() {
+        RestTemplate restTemplate = new RestTemplate(); // Course info =
+        String coursesString = restTemplate.getForObject("https://intense-stream-63269.herokuapp.com/api/coursesjson",
+                String.class);
+        System.out.println(coursesString);
+    }
+
 }
