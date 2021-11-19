@@ -12,39 +12,39 @@ import org.springframework.validation.Errors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.example.demo.business.PAE;
 import com.example.demo.model.Course;
+import com.example.demo.model.CourseDB;
 
 @Controller
 @Slf4j
 public class CourseCtrl {
 
     @Autowired
-    private PAE pae;
+    private CourseDB courseDB;
 
     @GetMapping("/courses")
     public String courses(Model model) {
-        model.addAttribute("courses", pae.getCourses());
+        model.addAttribute("courses", courseDB.findAll());
         model.addAttribute("course", new Course(null, null, 0));
         return "courses";
     }
 
     @GetMapping("/courses/detail")
     public String courseDetail(@RequestParam String coursId, Model model) {
-        model.addAttribute("cours", coursId);
         return "detail";
     }
 
     @PostMapping("/courses")
     public String addCourse(@Valid Course cours, Errors errors, Model model) {
-        if(errors.hasErrors()) {
-        log.info("Il y a des erreurs mon petit lapin");
+        if (errors.hasErrors()) {
+            log.info("Il y a des erreurs mon petit lapin");
         } else {
-            log.info("Cours ajouter : id : " + cours.getId() + ", libelle : " + cours.getLibelle() + ", ects : "
-            + cours.getEcts());
+            courseDB.save(new Course(cours.getId(), cours.getLibelle(), cours.getEcts()));
+            log.info("Cours ajouter :" + cours);
+            log.info("Tous les cours dans la BD : " + courseDB.findAll());
         }
 
-        model.addAttribute("courses", pae.getCourses());
+        model.addAttribute("courses", courseDB.findAll());
         return "courses";
     }
 

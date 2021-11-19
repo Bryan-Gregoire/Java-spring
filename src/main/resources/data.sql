@@ -1,0 +1,1 @@
+insert into Course(id,libelle, ects) values ('INT', 'Introduction', 10), ('MAT1', 'Mathematics 2', 3), ('CAI1', 'Anglais', 2), ('DEV1', 'Developpement 1', 10),('DEV2', 'Developpement 2', 10), ('WEBG2', 'Developpement web 1', 5)

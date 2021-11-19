@@ -1,9 +1,7 @@
 package com.example.demo.web;
 
-import java.util.List;
-
-import com.example.demo.business.PAE;
 import com.example.demo.model.Course;
+import com.example.demo.model.CourseDB;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,11 +16,11 @@ import org.springframework.web.client.RestTemplate;
 public class restCtrl {
 
     @Autowired
-    private PAE pae;
+    private CourseDB courseDB;
 
     @GetMapping("/coursesjson")
     public String getCoursesJson() {
-        List<Course> courses = pae.getCourses();
+        Iterable<Course> courses = courseDB.findAll();
         String coursesStr = "";
         for (Course cours : courses) {
             coursesStr += " ID : " + cours.getId() + ", Libelle : " + cours.getLibelle() + ", ECTS : " + cours.getEcts()
@@ -33,7 +31,7 @@ public class restCtrl {
 
     @GetMapping("/courses/student")
     public void getStudentCoursesJSON() {
-        RestTemplate restTemplate = new RestTemplate(); // Course info =
+        RestTemplate restTemplate = new RestTemplate();
         String coursesString = restTemplate.getForObject("https://intense-stream-63269.herokuapp.com/api/coursesjson",
                 String.class);
         System.out.println(coursesString);
