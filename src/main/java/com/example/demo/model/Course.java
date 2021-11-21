@@ -7,13 +7,13 @@ import javax.persistence.Id;
 import javax.validation.constraints.Max;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 
 @Entity
-@Value
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Course {
 
     @Id
