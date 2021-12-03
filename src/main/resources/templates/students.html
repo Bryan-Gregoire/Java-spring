@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Étudiants</title>
+</head>
+
+<body>
+    <main layout:fragment="content">
+        <h1>Liste des étudiants</h1>
+        <table>
+
+            <tr>
+
+            </tr>
+        </table>
+
+        <table th:unless="${#lists.isEmpty(students)}">
+            <tr>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Genre</th>
+                <th>Section</th>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.matricule}">matricule</td>
+                <td th:text="${student.name}">nom</td>
+                <td th:text="${student.gender.value}">genre</td>
+                <td th:text="${student.section}">section</td>
+            </tr>
+        </table>
+        <p th:if="${#lists.isEmpty(students)}"> Il n'y a aucun étudiant actuellement</p>
+
+        <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
+            <div>
+                <label for="name">Nom</label>
+                <input type="text" name="name" th:field="*{name}" th:errorclass="errorField"
+                    placeholder="Nom de l'étudiant">
+                <span th:errors="*{name}" class="errorMsg">erreur</span>
+            </div>
+
+            <div id="enum">
+                <label for="gender">Genre :</label>
+                <div th:each="gender : ${T(com.example.demo.model.Gender).values()}">
+                    <input type="radio" name="sexe" th:value="${gender}" th:text="${gender.getValue()}"
+                        th:field="*{gender}">
+                </div>
+
+                <label id="section" for="section">Section :</label>
+                <div th:each="section : ${T(com.example.demo.model.Section).values()}">
+                    <input name="option" type="radio" th:value="${section}" th:text="${section}" th:field="*{section}">
+                </div>
+            </div>
+
+            <button type="submit">Ajouter</button>
+        </form>
+    </main>
+</body>
+
+</html>
+
