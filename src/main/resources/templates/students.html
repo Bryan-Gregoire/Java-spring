@@ -9,12 +9,6 @@
 <body>
     <main layout:fragment="content">
         <h1>Liste des étudiants</h1>
-        <table>
-
-            <tr>
-
-            </tr>
-        </table>
 
         <table th:unless="${#lists.isEmpty(students)}">
             <tr>
@@ -30,13 +24,15 @@
                 <td th:text="${student.section}">section</td>
             </tr>
         </table>
+
         <p th:if="${#lists.isEmpty(students)}"> Il n'y a aucun étudiant actuellement</p>
 
         <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
+
             <div>
                 <label for="name">Nom</label>
-                <input type="text" name="name" th:field="*{name}" th:errorclass="errorField"
-                    placeholder="Nom de l'étudiant">
+                <input type="text" name="name" th:field="*{name}" placeholder="Nom de l'étudiant"
+                    th:errorclass="errorField">
                 <span th:errors="*{name}" class="errorMsg">erreur</span>
             </div>
 
@@ -44,19 +40,23 @@
                 <label for="gender">Genre :</label>
                 <div th:each="gender : ${T(com.example.demo.model.Gender).values()}">
                     <input type="radio" name="sexe" th:value="${gender}" th:text="${gender.getValue()}"
-                        th:field="*{gender}">
+                        th:field="*{gender}" th:errorclass="errorField">
                 </div>
+                <span th:errors="*{gender}" class="errorMsg">erreur</span>
 
                 <label id="section" for="section">Section :</label>
                 <div th:each="section : ${T(com.example.demo.model.Section).values()}">
-                    <input name="option" type="radio" th:value="${section}" th:text="${section}" th:field="*{section}">
+                    <input type="radio" name="option" th:value="${section}" th:text="${section}" th:field="*{section}"
+                        th:errorclass="errorField">
                 </div>
+                <span th:errors="*{section}" class="errorMsg">erreur</span>
+
             </div>
 
             <button type="submit">Ajouter</button>
         </form>
+
     </main>
 </body>
 
 </html>
-

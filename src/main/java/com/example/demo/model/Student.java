@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -22,8 +23,10 @@ public class Student {
     private String name;
 
     @Enumerated
+    @NotNull(message = "Veuillez précisez votre sex")
     private Gender gender;
 
     @Enumerated
+    @NotNull(message = "Veuillez précisez votre section")
     private Section section;
 }
