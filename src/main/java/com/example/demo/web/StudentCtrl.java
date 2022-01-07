@@ -28,9 +28,7 @@ public class StudentCtrl {
 
     @PostMapping("/students")
     public String students(@Valid Student student, Errors errors, Model model) {
-        if (errors.hasErrors()) {
-          
-        } else {
+        if (errors.hasErrors()) {} else {
             studentDB.save(student);
             model.addAttribute("student", new Student());
         }

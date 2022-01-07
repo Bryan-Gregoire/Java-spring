@@ -57,7 +57,7 @@ body {
 input[type=text] {
     padding: 5px 10px;
     margin: 4px 0;
-    border: 2px solid rgb(207, 75, 75);
+    border: 2px solid rgb(54, 50, 50);
     border-radius: 4px;
 }
 
@@ -100,6 +100,7 @@ table {
 
 #studentForm {
     display: inline-grid;
+    margin-bottom: 15px;
 }
 
 #enum {

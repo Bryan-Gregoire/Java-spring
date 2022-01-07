@@ -10,23 +10,6 @@
     <main layout:fragment="content">
         <h1>Liste des étudiants</h1>
 
-        <table th:unless="${#lists.isEmpty(students)}">
-            <tr>
-                <th>Matricule</th>
-                <th>Nom</th>
-                <th>Genre</th>
-                <th>Section</th>
-            </tr>
-            <tr th:each="student : ${students}">
-                <td th:text="${student.matricule}">matricule</td>
-                <td th:text="${student.name}">nom</td>
-                <td th:text="${student.gender.value}">genre</td>
-                <td th:text="${student.section}">section</td>
-            </tr>
-        </table>
-
-        <p th:if="${#lists.isEmpty(students)}"> Il n'y a aucun étudiant actuellement</p>
-
         <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
 
             <div>
@@ -55,6 +38,23 @@
 
             <button type="submit">Ajouter</button>
         </form>
+
+        <table th:unless="${#lists.isEmpty(students)}">
+            <tr>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Genre</th>
+                <th>Section</th>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.matricule}">matricule</td>
+                <td th:text="${student.name}">nom</td>
+                <td th:text="${student.gender.value}">genre</td>
+                <td th:text="${student.section}">section</td>
+            </tr>
+        </table>
+
+        <p th:if="${#lists.isEmpty(students)}"> Il n'y a aucun étudiant actuellement</p>
 
     </main>
 </body>
