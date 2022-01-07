@@ -8,10 +8,29 @@
 
 <body>
     <main layout:fragment="content">
-        <h1>Voici les détail du cours de <span th:text=${cours}>inconnu</span> </h1>
+        <h1 id="detailH1" th:text="|${course.id} - ${course.libelle}|">inconnu</h1>
+
+        <div>
+            <h2>Liste des étudiants inscrits a ce cours : </h1>
+
+                <table th:unless="${#lists.isEmpty(students)}">
+                    <tr>
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Genre</th>
+                        <th>Section</th>
+                    </tr>
+                    <tr th:each="student : ${students}">
+                        <td th:text="${student.matricule}">matricule</td>
+                        <td><a th:text="${student.name}" th:href="@{/student/courses/(studentId=${student.matricule})}">nom</a> </td>
+                        <td th:text="${student.gender.value}">genre</td>
+                        <td th:text="${student.section}">section</td>
+                    </tr>
+                </table>
+            <p th:if="${#lists.isEmpty(students)}"> Il n'y a actuellement aucun étudiant inscrit a ce cours</p>
+        </div>
     </main>
 
 </body>
-<footer></footer>
 
 </html>

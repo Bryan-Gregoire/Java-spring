@@ -1,5 +1,7 @@
 package com.example.demo.web;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import com.example.demo.model.Student;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class StudentCtrl {
@@ -34,5 +37,16 @@ public class StudentCtrl {
         }
         model.addAttribute("students", studentDB.findAll());
         return "students";
+    }
+
+    @GetMapping("/student/courses")
+    public String studentsCourses(@RequestParam int studentId, Model model) {
+        Optional<Student> studOptional = studentDB.findById(studentId);
+        Student student = studOptional.get();
+
+        model.addAttribute("student", student);
+        model.addAttribute("courses", student.getMyCourses());
+        
+        return "studentCourses";
     }
 }

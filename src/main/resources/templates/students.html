@@ -48,7 +48,7 @@
             </tr>
             <tr th:each="student : ${students}">
                 <td th:text="${student.matricule}">matricule</td>
-                <td th:text="${student.name}">nom</td>
+                <td><a th:text="${student.name}" th:href="@{/student/courses/(studentId=${student.matricule})}">nom</a></td>
                 <td th:text="${student.gender.value}">genre</td>
                 <td th:text="${student.section}">section</td>
             </tr>

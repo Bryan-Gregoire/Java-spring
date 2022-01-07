@@ -2,8 +2,14 @@ package com.example.demo.model;
 
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Min;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Max;
 
 import lombok.AllArgsConstructor;
@@ -26,4 +32,14 @@ public class Course {
     @Min(value = 1, message = "Le nombre ne peut pas être inférieur à 1")
     @Max(value = 60, message = "Le nombre ne peut pas être supérieur à 60")
     private int ects;
+
+    @ManyToMany(mappedBy = "myCourses")
+    private List<Student> students;
+
+    public Course(String id, String libelle, int ects) {
+        this.id = id;
+        this.libelle = libelle;
+        this.ects = ects;
+        this.students = new ArrayList<>();
+    }
 }

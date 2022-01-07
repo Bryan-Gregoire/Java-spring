@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 import org.springframework.validation.Errors;
 
@@ -31,6 +33,11 @@ public class CourseCtrl {
 
     @GetMapping("/courses/detail")
     public String courseDetail(@RequestParam String coursId, Model model) {
+        Optional<Course> courseResOptional = courseDB.findById(coursId);
+        Course course = courseResOptional.get();
+
+        model.addAttribute("course", course);
+        model.addAttribute("students", course.getStudents());
         return "detail";
     }
 

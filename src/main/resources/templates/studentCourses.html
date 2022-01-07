@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Étudiant-Cours</title>
+</head>
+
+<body>
+    <main layout:fragment="content">
+        <h1 id="studentCoursesH1" th:text="|${student.matricule} - ${student.name}|">inconnu</h1>
+
+        <div>
+            <h2>Liste des cours inscrit : </h1>
+
+                <table th:unless="${#lists.isEmpty(courses)}">
+                    <tr>
+                        <th>Sigle</th>
+                        <th>Titre</th>
+                        <th>ECTS</th>
+                    </tr>
+                    <tr th:each="course : ${courses}">
+                        <td th:text="${course.id}">Sigle</td>
+                        <td><a th:text="${course.libelle}" th:href="@{/courses/detail/(coursId=${course.id})}">Libellé</a></td>
+                        <td th:text="${course.ects}">ECTS</td>
+                    </tr>
+                </table>
+            <p th:if="${#lists.isEmpty(courses)}"> Inscription a aucun cours</p>
+        </div>
+    </main>
+
+</body>
+</html>

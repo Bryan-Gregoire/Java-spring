@@ -118,3 +118,7 @@ table {
 .errorMsg {
     color: red;
 }
+
+#detailH1, #studentCoursesH1 {
+    color: rgb(4, 91, 253);
+}
