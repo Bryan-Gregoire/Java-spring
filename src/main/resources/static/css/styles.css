@@ -46,6 +46,7 @@ li a:hover {
 h1 {
    margin: 0;
    padding-top: 12px;
+   font-size: xx-large;
 }
 
 body {
@@ -54,7 +55,7 @@ body {
     width: 100%;
 }
 
-input[type=text] {
+input[type=text], input[type=number] {
     padding: 5px 10px;
     margin: 4px 0;
     border: 2px solid rgb(54, 50, 50);
@@ -116,9 +117,31 @@ table {
 
 .errorMsg {
     color: red;
+    margin: 3px;
 }
 
 #detailH1, #studentCoursesH1 {
     color: #ee8080d3;
     font-weight: bold;
+}
+
+#studentTitle {
+    font-size: 55px;
+}
+
+#studentExistAlready {
+    color: red;
+    margin: 5px;
+    font-size: xx-large;
+}
+
+#studentRegistration, #studentCourseRegistration {
+    display: inline-flex;
+    padding-top: 15px;
+    align-items: baseline;
+    grid-column-gap: 10px;
+}
+
+#registerStudentSpan, #studentCourseRegisterSpan {
+    font-size: 20px;
 }

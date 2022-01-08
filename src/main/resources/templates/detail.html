@@ -10,6 +10,21 @@
     <main layout:fragment="content">
         <h1 id="detailH1" th:text="|${course.id} - ${course.libelle}|">inconnu</h1>
 
+        <div id="studentRegistration">
+            <span id="registerStudentSpan">Inscrire étudiant</span>
+
+            <form th:action="@{/course/student/registration}" method="post">
+                <select name="studentId">
+                    <option th:each="student : ${studentsNotRegister}" name="studentId" th:value=${student.id}
+                        th:text="|${student.matricule} - ${student.name}|">
+                </select>
+
+                <input type="hidden" name="courseId" th:value="${course.id}">
+                <button type="submit">Inscription</button>
+            </form>
+
+        </div>
+
         <div>
             <h2>Liste des étudiants inscrits a ce cours : </h1>
 
@@ -22,12 +37,13 @@
                     </tr>
                     <tr th:each="student : ${students}">
                         <td th:text="${student.matricule}">matricule</td>
-                        <td><a th:text="${student.name}" th:href="@{/student/courses/(studentId=${student.matricule})}">nom</a> </td>
+                        <td><a th:text="${student.name}"
+                                th:href="@{/student/courses/(studentId=${student.id})}">nom</a> </td>
                         <td th:text="${student.gender.value}">genre</td>
                         <td th:text="${student.section}">section</td>
                     </tr>
                 </table>
-            <p th:if="${#lists.isEmpty(students)}"> Il n'y a actuellement aucun étudiant inscrit a ce cours</p>
+                <p th:if="${#lists.isEmpty(students)}"> Il n'y a actuellement aucun étudiant inscrit a ce cours</p>
         </div>
     </main>
 

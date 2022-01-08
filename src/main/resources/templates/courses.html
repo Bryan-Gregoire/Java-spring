@@ -27,7 +27,7 @@
             
             <div>
                 <label for="ects">ECTS</label>
-                <input type="text" name="ects" th:field="*{ects}" placeholder="Nombre d'ects du cours ..."
+                <input type="number" name="ects" th:field="*{ects}" placeholder="Nombre d'ects du cours ..."
                     th:errorclass="errorField">
                 <span th:errors="*{ects}" class="errorMsg">erreur</span>
             </div>

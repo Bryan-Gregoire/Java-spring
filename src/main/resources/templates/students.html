@@ -8,11 +8,19 @@
 
 <body>
     <main layout:fragment="content">
-        <h1>Liste des étudiants</h1>
-
+        <h1 id="studentTitle">Liste des étudiants</h1>
+        <div th:if="${etudiantExisteMessage != null}">
+            <p id="studentExistAlready" th:text="${etudiantExisteMessage}">Erreur</p>
+        </div>
+            
         <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
 
             <div>
+                <label for="matricule">Matricule</label>
+                <input type="number" name="matricule" th:field="*{matricule}" placeholder="Matricule de l'étudiant"
+                    th:errorclass="errorField">
+                <span th:errors="*{matricule}" class="errorMsg">erreur</span>
+
                 <label for="name">Nom</label>
                 <input type="text" name="name" th:field="*{name}" placeholder="Nom de l'étudiant"
                     th:errorclass="errorField">
@@ -48,7 +56,7 @@
             </tr>
             <tr th:each="student : ${students}">
                 <td th:text="${student.matricule}">matricule</td>
-                <td><a th:text="${student.name}" th:href="@{/student/courses/(studentId=${student.matricule})}">nom</a></td>
+                <td><a th:text="${student.name}" th:href="@{/student/courses/(studentId=${student.id})}">nom</a></td>
                 <td th:text="${student.gender.value}">genre</td>
                 <td th:text="${student.section}">section</td>
             </tr>

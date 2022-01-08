@@ -10,8 +10,24 @@
     <main layout:fragment="content">
         <h1 id="studentCoursesH1" th:text="|${student.matricule} - ${student.name}|">inconnu</h1>
 
+        <div id="studentCourseRegistration">
+            <span id="studentCourseRegisterSpan">Inscription au cours </span>
+
+            <form th:action="@{/student/course/registration}" method="post">
+                <select name="courseId">
+                    <option th:each="course : ${courseNotEnrolled}" name="courseId" th:value=${course.id}
+                        th:text="${course.id}">
+                </select>
+
+                <input type="hidden" name="studentId" th:value="${student.id}">
+                <button type="submit">Inscription</button>
+            </form>
+        </div>
+
         <div>
             <h2>Liste des cours inscrit : </h1>
+
+                
 
                 <table th:unless="${#lists.isEmpty(courses)}">
                     <tr>

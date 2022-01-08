@@ -30,11 +30,12 @@ public class restCtrl {
     }
 
     @GetMapping("/courses/student")
-    public void getStudentCoursesJSON() {
+    public String getStudentCoursesJSON() {
         RestTemplate restTemplate = new RestTemplate();
         String coursesString = restTemplate.getForObject("https://intense-stream-63269.herokuapp.com/api/coursesjson",
                 String.class);
         System.out.println(coursesString);
+        return coursesString;
     }
 
 }
