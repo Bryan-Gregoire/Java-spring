@@ -1,6 +1,6 @@
 header {
     text-align: center;
-    background-color: cornflowerblue;
+    background-color: rgb(87, 125, 195);
     color: black;
     font-weight: bold;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -69,24 +69,23 @@ th, td {
 
 
 th {
-    background-color: aqua;
-    color: black;
-    font-weight: bold;
+    background-color: #333;
+    color: #dddddd;
     font-family: cursive;
 }
 
 td, td a, label {
-    color: darkblue;
+    color: #ee8080d3;
     font-weight: bold;
 }
 
 td, td a {
-    background-color: cornflowerblue;
+    background-color: rgb(82, 87, 97);
 }
 
-tr:hover {
-    background-color: blue;
-} 
+td a:hover {
+    color: black;
+}
 
 table {
     text-align: center;
@@ -120,5 +119,6 @@ table {
 }
 
 #detailH1, #studentCoursesH1 {
-    color: rgb(4, 91, 253);
+    color: #ee8080d3;
+    font-weight: bold;
 }
