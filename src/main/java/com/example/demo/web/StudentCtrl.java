@@ -10,8 +10,6 @@ import com.example.demo.model.Student;
 import com.example.demo.model.StudentDB;
 
 import org.springframework.validation.Errors;
-import org.codehaus.groovy.runtime.powerassert.SourceText;
-import org.hibernate.exception.GenericJDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -56,8 +54,8 @@ public class StudentCtrl {
                 studentDB.save(student);
             } catch (DataIntegrityViolationException e) {
                 model.addAttribute("etudiantExisteMessage", "Cet matricule existe déja !");
-                model.addAttribute("student", new Student());
             }
+            model.addAttribute("student", new Student());
         }
         model.addAttribute("students", studentDB.findAll());
         return "students";
@@ -76,4 +74,12 @@ public class StudentCtrl {
 
         return "redirect:/student/courses/?studentId=" + studentId;
     }
+
+    @PostMapping("/students/search")
+    public String searchStudents(@RequestParam String studentName, Model model) {
+        model.addAttribute("students", studentDB.findByNameContaining(studentName));
+        model.addAttribute("student", new Student());
+        return "students";
+    }
+
 }

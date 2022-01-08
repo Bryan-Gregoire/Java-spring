@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import antlr.collections.List;
-import lombok.extern.slf4j.Slf4j;
-
-import java.lang.ProcessBuilder.Redirect;
-
 import javax.validation.Valid;
 import org.springframework.validation.Errors;
 
@@ -21,7 +16,6 @@ import com.example.demo.model.Student;
 import com.example.demo.model.StudentDB;
 
 @Controller
-@Slf4j
 public class CourseCtrl {
 
     @Autowired

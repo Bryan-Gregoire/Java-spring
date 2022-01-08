@@ -9,43 +9,52 @@
 <body>
     <main layout:fragment="content">
         <h1 id="studentTitle">Liste des étudiants</h1>
-        <div th:if="${etudiantExisteMessage != null}">
-            <p id="studentExistAlready" th:text="${etudiantExisteMessage}">Erreur</p>
-        </div>
-            
-        <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
+        <p id="studExistAlready" th:if="${etudiantExisteMessage != null}" th:text="${etudiantExisteMessage}">Erreur </p>
+
+        <div>
+            <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
+
+                <div>
+                    <label for="matricule">Matricule</label>
+                    <input type="number" name="matricule" th:field="*{matricule}" placeholder="Matricule de l'étudiant"
+                        th:errorclass="errorField">
+                    <span th:errors="*{matricule}" class="errorMsg">erreur</span>
+
+                    <label for="name">Nom</label>
+                    <input type="text" name="name" th:field="*{name}" placeholder="Nom de l'étudiant"
+                        th:errorclass="errorField">
+                    <span th:errors="*{name}" class="errorMsg">erreur</span>
+                </div>
+
+                <div id="enum">
+                    <label for="gender">Genre :</label>
+                    <div th:each="gender : ${T(com.example.demo.model.Gender).values()}">
+                        <input type="radio" name="sexe" th:value="${gender}" th:text="${gender.getValue()}"
+                            th:field="*{gender}" th:errorclass="errorField">
+                    </div>
+                    <span th:errors="*{gender}" class="errorMsg">erreur</span>
+
+                    <label id="section" for="section">Section :</label>
+                    <div th:each="section : ${T(com.example.demo.model.Section).values()}">
+                        <input type="radio" name="option" th:value="${section}" th:text="${section}"
+                            th:field="*{section}" th:errorclass="errorField">
+                    </div>
+                    <span th:errors="*{section}" class="errorMsg">erreur</span>
+
+                </div>
+
+                <button type="submit">Ajouter</button>
+            </form>
 
             <div>
-                <label for="matricule">Matricule</label>
-                <input type="number" name="matricule" th:field="*{matricule}" placeholder="Matricule de l'étudiant"
-                    th:errorclass="errorField">
-                <span th:errors="*{matricule}" class="errorMsg">erreur</span>
-
-                <label for="name">Nom</label>
-                <input type="text" name="name" th:field="*{name}" placeholder="Nom de l'étudiant"
-                    th:errorclass="errorField">
-                <span th:errors="*{name}" class="errorMsg">erreur</span>
+                <form th:action="@{/students/search}" method="post">
+                    <label for="student-name-search">Recherche par le nom</label>
+                    <input type="search" id="student-name-search" name="studentName" placeholder="nom étudiant ..."
+                        maxlength="25">
+                    <button type="submit">rechercher</button>
+                </form>
             </div>
-
-            <div id="enum">
-                <label for="gender">Genre :</label>
-                <div th:each="gender : ${T(com.example.demo.model.Gender).values()}">
-                    <input type="radio" name="sexe" th:value="${gender}" th:text="${gender.getValue()}"
-                        th:field="*{gender}" th:errorclass="errorField">
-                </div>
-                <span th:errors="*{gender}" class="errorMsg">erreur</span>
-
-                <label id="section" for="section">Section :</label>
-                <div th:each="section : ${T(com.example.demo.model.Section).values()}">
-                    <input type="radio" name="option" th:value="${section}" th:text="${section}" th:field="*{section}"
-                        th:errorclass="errorField">
-                </div>
-                <span th:errors="*{section}" class="errorMsg">erreur</span>
-
-            </div>
-
-            <button type="submit">Ajouter</button>
-        </form>
+        </div>
 
         <table th:unless="${#lists.isEmpty(students)}">
             <tr>
