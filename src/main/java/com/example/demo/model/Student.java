@@ -18,15 +18,16 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Student {
 
-    
     @Id
     @GeneratedValue(generator = "seq")
     @SequenceGenerator(name="seq", initialValue=3)
@@ -56,4 +57,12 @@ public class Student {
     )
     private List<Course> myCourses;
 
+
+    public Student(int matricule, String name, Gender gender, Section section) {
+        this.matricule = matricule;
+        this.name = name;
+        this.gender = gender;
+        this.section = section;
+        this.myCourses = new ArrayList<Course>();
+    }
 }
