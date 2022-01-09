@@ -3,7 +3,7 @@
     layout:decorate="~{layout}">
 
 <head>
-    <title>Cours</title>
+    <title th:text=#{courses}></title>
 </head>
 
 <body>
@@ -12,34 +12,34 @@
             <div id="contentForm">
                 
             <div>
-                <label for="sigle">Sigle</label>
-                <input type="text" name="sigle" th:field="*{id}" placeholder="Entrez le sigle du cours ..."
+                <label for="sigle" th:text=#{acronym}></label>
+                <input type="text" name="sigle" th:field="*{id}" th:placeholder="#{acronym.placeholder}"
                     th:errorclass="errorField">
                 <span th:errors="*{id}" class="errorMsg">erreur</span>
             </div>
 
             <div>
-                <label for="lib">Libelle</label>
-                <input type="text" name="lib" th:field="*{libelle}" placeholder="Entrez le titre du cours ..."
+                <label for="lib" th:text=#{wording}></label>
+                <input type="text" name="lib" th:field="*{libelle}" th:placeholder="#{wording.placeholder}"
                     th:errorclass="errorField">
                 <span th:errors="*{libelle}" class="errorMsg">erreur</span>
             </div>
             
             <div>
-                <label for="ects">ECTS</label>
-                <input type="number" name="ects" th:field="*{ects}" placeholder="Nombre d'ects du cours ..."
+                <label for="ects" th:text=#{ects}></label>
+                <input type="number" name="ects" th:field="*{ects}" th:placeholder="#{ects.placeholder}"
                     th:errorclass="errorField">
                 <span th:errors="*{ects}" class="errorMsg">erreur</span>
             </div>
-            <button type="submit">Ajouter</button>
+            <button th:text="#{add}" type="submit"></button>
         </div>
         </form>
 
         <table th:unless="${#lists.isEmpty(courses)}">
             <tr>
-                <th>Sigle</th>
-                <th>Titre</th>
-                <th>ECTS</th>
+                <th th:text=#{acronym}></th>
+                <th th:text=#{title}></th>
+                <th th:text=#{ects}></th>
             </tr>
             <tr th:each="course : ${courses}">
                 <td><a th:text="${course.id}" th:href="@{/courses/detail/(coursId=${course.id})}">cours</a></td>

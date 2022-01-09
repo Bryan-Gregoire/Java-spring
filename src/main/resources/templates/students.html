@@ -8,33 +8,33 @@
 
 <body>
     <main layout:fragment="content">
-        <h1 id="studentTitle">Liste des étudiants</h1>
+        <h1 id="studentTitle" th:text=#{students.list.title}></h1>
         <p id="studExistAlready" th:if="${etudiantExisteMessage != null}" th:text="${etudiantExisteMessage}">Erreur </p>
 
         <div>
             <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
 
                 <div>
-                    <label for="matricule">Matricule</label>
+                    <label th:text="#{matricule}" for="matricule"></label>
                     <input type="number" name="matricule" th:field="*{matricule}" placeholder="Matricule de l'étudiant"
                         th:errorclass="errorField">
                     <span th:errors="*{matricule}" class="errorMsg">erreur</span>
 
-                    <label for="name">Nom</label>
+                    <label th:text="#{name}" for="name"></label>
                     <input type="text" name="name" th:field="*{name}" placeholder="Nom de l'étudiant"
                         th:errorclass="errorField">
                     <span th:errors="*{name}" class="errorMsg">erreur</span>
                 </div>
 
                 <div id="enum">
-                    <label for="gender">Genre :</label>
+                    <label th:text="#{gender}" for="gender"></label>
                     <div th:each="gender : ${T(com.example.demo.model.Gender).values()}">
                         <input type="radio" name="sexe" th:value="${gender}" th:text="${gender.getValue()}"
                             th:field="*{gender}" th:errorclass="errorField">
                     </div>
                     <span th:errors="*{gender}" class="errorMsg">erreur</span>
 
-                    <label id="section" for="section">Section :</label>
+                    <label th:text="#{section}" id="section" for="section"></label>
                     <div th:each="section : ${T(com.example.demo.model.Section).values()}">
                         <input type="radio" name="option" th:value="${section}" th:text="${section}"
                             th:field="*{section}" th:errorclass="errorField">
@@ -43,25 +43,24 @@
 
                 </div>
 
-                <button type="submit">Ajouter</button>
+                <button th:text="#{add}" type="submit"></button>
             </form>
-
             <div>
                 <form th:action="@{/students/search}" method="post">
-                    <label for="student-name-search">Recherche par le nom</label>
-                    <input type="search" id="student-name-search" name="studentName" placeholder="nom étudiant ..."
-                        maxlength="25">
-                    <button type="submit">rechercher</button>
+                    <label th:text=#{student.search.name} for="student-name-search"></label>
+                    <input type="search" id="student-name-search" name="studentName"
+                        th:placeholder="#{student.search.placeholder}" maxlength="25">
+                    <button th:text=#{search} type="submit"></button>
                 </form>
             </div>
         </div>
 
         <table th:unless="${#lists.isEmpty(students)}">
             <tr>
-                <th>Matricule</th>
-                <th>Nom</th>
-                <th>Genre</th>
-                <th>Section</th>
+                <th th:text="#{matricule}"></th>
+                <th th:text="#{name}"></th>
+                <th th:text="#{gender}"></th>
+                <th th:text="#{section}"></th>
             </tr>
             <tr th:each="student : ${students}">
                 <td th:text="${student.matricule}">matricule</td>

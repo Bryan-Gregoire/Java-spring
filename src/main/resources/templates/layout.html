@@ -12,18 +12,28 @@
 
 <body>
     <header>
-        <h1>Programme annuel des étudiants <img th:src="@{/image/EsiLogo.jpg}" alt="HE2B"></h1>
-        <h3>HE2B-ESI / WEBG5 / MCD / 2021-2022</h3>
+        <h1 th:text="#{pae.header.title}"> <img th:src="@{/image/EsiLogo.jpg}" alt="HE2B"></h1>
+        <h3 th:text="#{pae.header.subtitle}"></h3>
 
-        <p>Bievenue sur le site de gestion du programme annuel des étudiants.</p>
+        <p th:text="#{pae.header.welcome}"></p>
+
+        <div id="language">
+            <select id="lang" onchange="location.href=this.value">
+                <option th:text="#{lang.change}" readonly></option>
+                <option value="?lang=en" th:text="#{lang.eng}"></option>
+                <option value="?lang=fr" th:text="#{lang.fr}"></option>
+            </select>
+        </div>
 
         <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/courses">Cours</a></li>
-            <li><a href="/students">Étudiants</a></li>
+            <li><a href="/" th:text="#{home}"></a></li>
+            <li><a href="/courses" th:text=#{courses}></a></li>
+            <li><a href="/students" th:text=#{students}></a></li>
         </ul>
+
     </header>
     <main layout:fragment="content"></main>
 </body>
+
 
 </html>

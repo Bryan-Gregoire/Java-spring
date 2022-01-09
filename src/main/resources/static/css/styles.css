@@ -145,3 +145,12 @@ table {
 #registerStudentSpan, #studentCourseRegisterSpan {
     font-size: 20px;
 }
+
+#language {
+    text-align: end;
+}
+
+#lang{
+    color: white;
+    background-color: rgb(82, 87, 97);
+}
