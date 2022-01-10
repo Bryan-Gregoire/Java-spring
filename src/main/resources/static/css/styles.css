@@ -28,6 +28,7 @@ li {
 
 li:last-child {
     border-right: none;
+    float: right;
 }
 
 li a {
@@ -55,7 +56,7 @@ body {
     width: 100%;
 }
 
-input[type=text], input[type=number] {
+input[type=text], input[type=number], input[type=password] {
     padding: 5px 10px;
     margin: 4px 0;
     border: 2px solid rgb(54, 50, 50);
@@ -153,4 +154,11 @@ table {
 #lang{
     color: white;
     background-color: rgb(82, 87, 97);
+}
+
+button {
+    background-color: rgb(82, 87, 97);
+    color: white;
+    font-weight: bold;
+    height: 25px;
 }

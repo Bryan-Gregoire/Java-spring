@@ -12,7 +12,7 @@
         <p id="studExistAlready" th:if="${etudiantExisteMessage != null}" th:text="${etudiantExisteMessage}">Erreur </p>
 
         <div>
-            <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm">
+            <form name="student-form" th:action="@{/students}" th:object="${student}" method="post" id="studentForm" sec:authorize="hasAuthority('SECRETARIAT')">
 
                 <div>
                     <label th:text="#{matricule}" for="matricule"></label>

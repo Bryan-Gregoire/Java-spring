@@ -8,31 +8,31 @@
 
 <body>
     <main layout:fragment="content">
-        <form id="formCourse" th:action="@{/courses}" th:object="${course}" method="post">
+        <form id="formCourse" th:action="@{/courses}" th:object="${course}" method="post"  sec:authorize="hasAuthority('SECRETARIAT')">
             <div id="contentForm">
-                
-            <div>
-                <label for="sigle" th:text=#{acronym}></label>
-                <input type="text" name="sigle" th:field="*{id}" th:placeholder="#{acronym.placeholder}"
-                    th:errorclass="errorField">
-                <span th:errors="*{id}" class="errorMsg">erreur</span>
-            </div>
 
-            <div>
-                <label for="lib" th:text=#{wording}></label>
-                <input type="text" name="lib" th:field="*{libelle}" th:placeholder="#{wording.placeholder}"
-                    th:errorclass="errorField">
-                <span th:errors="*{libelle}" class="errorMsg">erreur</span>
+                <div>
+                    <label for="sigle" th:text=#{acronym}></label>
+                    <input type="text" name="sigle" th:field="*{id}" th:placeholder="#{acronym.placeholder}"
+                        th:errorclass="errorField">
+                    <span th:errors="*{id}" class="errorMsg">erreur</span>
+                </div>
+
+                <div>
+                    <label for="lib" th:text=#{wording}></label>
+                    <input type="text" name="lib" th:field="*{libelle}" th:placeholder="#{wording.placeholder}"
+                        th:errorclass="errorField">
+                    <span th:errors="*{libelle}" class="errorMsg">erreur</span>
+                </div>
+
+                <div>
+                    <label for="ects" th:text=#{ects}></label>
+                    <input type="number" name="ects" th:field="*{ects}" th:placeholder="#{ects.placeholder}"
+                        th:errorclass="errorField">
+                    <span th:errors="*{ects}" class="errorMsg">erreur</span>
+                </div>
+                    <button th:text="#{add}" type="submit"></button>
             </div>
-            
-            <div>
-                <label for="ects" th:text=#{ects}></label>
-                <input type="number" name="ects" th:field="*{ects}" th:placeholder="#{ects.placeholder}"
-                    th:errorclass="errorField">
-                <span th:errors="*{ects}" class="errorMsg">erreur</span>
-            </div>
-            <button th:text="#{add}" type="submit"></button>
-        </div>
         </form>
 
         <table th:unless="${#lists.isEmpty(courses)}">

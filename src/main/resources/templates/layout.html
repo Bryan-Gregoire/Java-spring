@@ -17,6 +17,10 @@
 
         <p th:text="#{pae.header.welcome}"></p>
 
+        <div sec:authorize="isAuthenticated()">
+            <p> Login : <span sec:authentication="name"></span> </p>
+        </div>
+
         <div id="language">
             <select id="lang" onchange="location.href=this.value">
                 <option th:text="#{lang.change}" readonly></option>
@@ -25,12 +29,20 @@
             </select>
         </div>
 
-        <ul>
-            <li><a href="/" th:text="#{home}"></a></li>
-            <li><a href="/courses" th:text=#{courses}></a></li>
-            <li><a href="/students" th:text=#{students}></a></li>
-        </ul>
+        <div>
+            <ul>
+                <li><a href="/" th:text="#{home}"></a></li>
+                <li><a href="/courses" th:text=#{courses}></a></li>
+                <li><a href="/students" th:text=#{students}></a></li>
+                <li>
+                    <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+                    <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
 
+            </ul>
+        </div>
     </header>
     <main layout:fragment="content"></main>
 </body>
